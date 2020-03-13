@@ -11,6 +11,7 @@ ARG USERNAME=dev
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
+USER root
 # Install VSCode using deb file
 ARG CODEDEB=https://go.microsoft.com/fwlink/?LinkID=760868
 ADD $CODEDEB code.deb
