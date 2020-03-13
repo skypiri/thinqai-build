@@ -2,7 +2,7 @@
 #  Artificial Intelligence Lab,LG ELECTRONICS INC., SEOUL, KOREA
 #  Copyright(c) 2019 by LG Electronics Inc. All rights reserved.
 #------------------------------------------------------------------------------
-FROM skypiri/thinqai-ubuntu:latest
+FROM skypiri/thinqai-ubuntu-build:latest
 
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
