@@ -63,6 +63,26 @@ RUN apt-get update && apt-get -y install \
     python3-dev \
     python3-setuptools
 
+
+# RUN mkdir /var/run/sshd
+
+# #set password
+# RUN echo 'root:root' |chpasswd
+# RUN echo 'dev:dev' | chpasswd
+
+# #replace sshd_config
+# RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+# RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+
+# #make .ssh
+# RUN mkdir /root/.ssh
+# USER ${USERNAME}
+# RUN mkdir /home/${USERNAME}/.ssh
+# USER root
+# EXPOSE 22
+# CMD ["/usr/sbin/sshd", "-D"]
+
+
 # Avoiding canberra-gtk-moduls 
 RUN apt-get -y install \
     libcanberra-gtk-module \
@@ -89,6 +109,11 @@ RUN apt-get update && apt-get -y install \
 
 USER $USERNAME
 WORKDIR /home/${USERNAME}
+
+
+
+
+
 
 
 
