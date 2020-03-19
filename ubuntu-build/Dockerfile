@@ -66,7 +66,8 @@ RUN apt-get update && apt-get -y install \
 # Avoiding canberra-gtk-moduls 
 RUN apt-get -y install \
     libcanberra-gtk-module \
-    libcanberra-gtk3-module    
+    libcanberra-gtk3-module \
+    dbus-x11    
 ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket    
 
 # Install google test / mock
