@@ -63,6 +63,12 @@ RUN apt-get update && apt-get -y install \
     python3-dev \
     python3-setuptools
 
+# Avoiding canberra-gtk-moduls 
+RUN apt-get -y install \
+    libcanberra-gtk-module \
+    libcanberra-gtk3-module    
+ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket    
+
 # Install google test / mock
 RUN apt-get -y install  \
     libgtest-dev    \
