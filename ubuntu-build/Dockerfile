@@ -11,14 +11,23 @@ ARG USERNAME=dev
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
+# Update system
+RUN apt-get update \ 
+    && apt-get install -y \
+    openssh-server \
+    vim \
+    apt-utils \
+    sudo \
+    rsync
+
 # Create the user
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    #
-    # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
-    && apt-get update \
-    && apt-get install -y --no-install-recommends apt-utils sudo \
-    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+RUN adduser --disabled-password -gecos "" ${USERNAME} \
+    && echo 'dev:dev1234' | chpasswd \
+    && mkdir /var/run/sshd
+
+# [Optional] Add sudo support. Omit if you don't need to install software after connecting.
+RUN usermod -aG sudo ${USERNAME} \
+    && echo "dev ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/dev \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
 # set timezone to Asia/Seoul
@@ -44,7 +53,6 @@ RUN apt-get update && apt-get -y install \
 RUN apt-get update && apt-get -y install \
     gdb \
     gdbserver \
-    openssh-server \
     net-tools   \
     iputils-ping    \
     unzip \
@@ -55,33 +63,12 @@ RUN apt-get update && apt-get -y install \
     x11-apps    \
     git \
     tig    \
-    vim \
     python2.7   \
     python-pip  \
     python-setuptools   \
     python3-pip \
     python3-dev \
     python3-setuptools
-
-
-# RUN mkdir /var/run/sshd
-
-# #set password
-# RUN echo 'root:root' |chpasswd
-# RUN echo 'dev:dev' | chpasswd
-
-# #replace sshd_config
-# RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
-# RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
-
-# #make .ssh
-# RUN mkdir /root/.ssh
-# USER ${USERNAME}
-# RUN mkdir /home/${USERNAME}/.ssh
-# USER root
-# EXPOSE 22
-# CMD ["/usr/sbin/sshd", "-D"]
-
 
 # Avoiding canberra-gtk-moduls 
 RUN apt-get -y install \
