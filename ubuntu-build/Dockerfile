@@ -68,7 +68,11 @@ RUN apt-get update && apt-get -y install \
     python-setuptools   \
     python3-pip \
     python3-dev \
-    python3-setuptools
+    python3-setuptools  \
+    strace \
+    lsof \
+    bc  \
+    repo
 
 # Avoiding canberra-gtk-moduls 
 RUN apt-get -y install \
