@@ -98,14 +98,8 @@ RUN apt-get update && apt-get -y install \
     ./chrome.deb    \
     && rm -rf chrome.deb
 
+# Set locale
+ENV LC_ALL=C.UTF-8
+
 USER $USERNAME
 WORKDIR /home/${USERNAME}
-
-
-
-
-
-
-
-
-
