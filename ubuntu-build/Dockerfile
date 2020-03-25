@@ -61,6 +61,7 @@ RUN apt-get update && apt-get -y install \
     alsa-utils \
     lsb-release \
     x11-apps    \
+    libxkbcommon-x11-dev    \
     git \
     tig    \
     python2.7   \
