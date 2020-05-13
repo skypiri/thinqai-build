@@ -73,7 +73,8 @@ RUN apt-get update && apt-get -y install \
     strace \
     lsof \
     bc  \
-    repo
+    repo \
+    virtualenv
 
 # Avoiding canberra-gtk-moduls 
 RUN apt-get -y install \
