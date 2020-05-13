@@ -73,8 +73,12 @@ RUN apt-get update && apt-get -y install \
     strace \
     lsof \
     bc  \
-    repo \
-    virtualenv
+    repo
+
+RUN apt-get update && apt-get -y install \
+    python3-virtualenv \
+    virtualenv    
+    
 
 # Avoiding canberra-gtk-moduls 
 RUN apt-get -y install \
