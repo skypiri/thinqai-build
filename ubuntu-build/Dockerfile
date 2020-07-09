@@ -73,7 +73,8 @@ RUN apt-get update && apt-get -y install \
     strace \
     lsof \
     bc  \
-    repo
+    repo \
+    qt5-default
 
 RUN apt-get update && apt-get -y install \
     python3-virtualenv \
