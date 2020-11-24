@@ -44,6 +44,6 @@ RUN chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/ide
 
 USER ${USERNAME}
 RUN (while sleep 3; do echo "y"; done) | ${ANDROID_HOME}/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --licenses
-RUN echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;29.0.3" "platform-tools" "platforms;android-26" "ndk-bundle" "cmake;3.6.4111459"
+RUN echo "y" | ${ANDROID_HOME}/tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;29.0.2" "build-tools;29.0.3" "platform-tools" "platforms;android-26" "ndk;21.1.6352462" "cmake;3.6.4111459"
 
 WORKDIR /home/${USERNAME}
