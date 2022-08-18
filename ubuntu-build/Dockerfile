@@ -64,17 +64,16 @@ RUN apt-get update && apt-get -y install \
     libxkbcommon-x11-dev    \
     git \
     tig    \
-    python2.7   \
-    python-pip  \
-    python-setuptools   \
     python3-pip \
     python3-dev \
     python3-setuptools  \
     strace \
     lsof \
     bc  \
-    repo \
     qt5-default
+
+# Repo install
+RUN curl https://storage.googleapis.com/git-repo-downloads/repo > repo && chmod 755 repo && mv repo /usr/bin
 
 RUN apt-get update && apt-get -y install \
     python3-virtualenv \
@@ -91,13 +90,8 @@ ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 # Install google test / mock
 RUN apt-get -y install  \
     libgtest-dev    \
-    google-mock \
+    libgmock-dev    \
     lcov    
-
-WORKDIR /usr/src/gtest
-RUN cmake . && make && make install
-WORKDIR /usr/src/gmock
-RUN cmake . && make && make install
 
 ARG CHROMEDEB=https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 ADD $CHROMEDEB chrome.deb
