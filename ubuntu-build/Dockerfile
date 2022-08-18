@@ -2,7 +2,7 @@
 #  Artificial Intelligence Lab,LG ELECTRONICS INC., SEOUL, KOREA
 #  Copyright(c) 2019 by LG Electronics Inc. All rights reserved.
 #------------------------------------------------------------------------------
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
